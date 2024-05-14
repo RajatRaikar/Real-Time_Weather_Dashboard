@@ -3,10 +3,10 @@ const error = require("../error/error");
 const fs = require("fs");
 
 const connection = mysql.createConnection({
-  host: "localhost", //process.env.HOSTNAME,
-  user: "root", //process.env.USER,
-  password: "password", // process.env.PASSWORD,
-  database: "weather_dashboard", //process.env.DATABASENAME
+  host: process.env.HOSTNAME,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASENAME
 });
 
 connection.connect((err, db) => {
