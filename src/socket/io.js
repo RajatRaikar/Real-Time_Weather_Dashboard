@@ -9,7 +9,7 @@ function initializeSocket(server) {
   });
 
   io.on("connection", (socket) => {
-    console.log("Client connected:");
+    console.log("Client connected:",  socket.id);
     socket.join(socket.handshake.query.location);
     socket.on("disconnect", () => {
       console.log("Client disconnected:", socket.id);

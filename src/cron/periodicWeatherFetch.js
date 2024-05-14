@@ -7,7 +7,6 @@ setInterval(async () => {
   try {
     const allWeatherData = await getAllWeatherData();
     allWeatherData[0].map(async (entry) => {
-      console.log(entry.location);
       const result = await weatherAPI([entry.location]);
       if (result === error.WEATHER_API_ERROR) throw Error(error.WEATHER_API_ERROR);
       const timestamp = result[0].timestamp.replace("T", " ").replace("Z", "");

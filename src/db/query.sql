@@ -87,7 +87,7 @@ BEGIN
 END;
 //
 CREATE OR REPLACE VIEW GetWeatherDataByUserId AS
-    SELECT w.id, w.temperature, w.humidity, w.timestamp, w.location, up.native_id
+    SELECT w.id as loc_id, up.id, w.temperature, w.humidity, w.timestamp, w.location, up.native_id
     FROM weather as w JOIN user_preference as up ON (w.id = up.user_preference OR up.user_preference = 0);
 //
 CREATE PROCEDURE IF NOT EXISTS GetWeatherDataByUserPreference()

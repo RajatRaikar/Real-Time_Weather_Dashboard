@@ -10,7 +10,6 @@ const insertUserPreference = async (userNativeId, locId) => {
 };
 
 const updateUserPreference = async (userId, locId) => {
-  console.log(userId, locId);
   return await new Promise((resolve, reject) => {
     connection.query("CALL UpdateUserPreference(?, ?)", [userId, locId], (error, results) => {
       if (error) reject(error);
@@ -38,7 +37,6 @@ const getDataByLoc = async (location) => {
 };
 
 const getUserPreferenceById = async (id) => {
-  console.log(id, "----");
   return await new Promise((resolve, reject) => {
     connection.query("CALL GetUserPreference(?)", [id], (error, results) => {
       if (error) reject(error);

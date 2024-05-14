@@ -5,7 +5,7 @@ require("dotenv").config();
 
 // INTERNAL IMPORT
 const connection = require("./src/db/database");
-require("./src/cron/periodicWeatherFetch");
+// require("./src/cron/periodicWeatherFetch");
 const userRouter = require("./src/routes/user");
 const { initializeSocket } = require("./src/socket/io");
 

@@ -48,12 +48,8 @@ userRouter.post("/", async (req, res) => {
 
 userRouter.get("/", async (req, res) => {
   try {
-    // const userId = req.query.id;
-    // if (!userId || userId <= 0 || isNaN(parseInt(userId))) return res.status(400).json({ msg: error.INVALID_ID });
     const [userData] = await getWeatherDataByUserPreference();
-    console.log(userData);
-    // if (!userData.length) return res.status(400).json({ msg: error.INVALID_ID });
-    return res.status(200).json(userData[0]);
+    return res.status(200).json(userData);
   } catch (e) {
     console.log(e);
     return res.status(500).json({
