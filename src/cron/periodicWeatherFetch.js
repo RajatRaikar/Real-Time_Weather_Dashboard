@@ -1,14 +1,11 @@
-const { getAllWeatherData, updateWeatherData, getWeatherDataByUserPreference } = require("../db/dbHelper");
+const { updateWeatherData, getWeatherDataByUserPreference } = require("../db/dbHelper");
 const weatherAPI = require("../api/weatherApi");
 const error = require("../error/error");
 const { getIo } = require("../socket/io");
 
 setInterval(async () => {
   try {
-    const allWeatherData = await getWeatherDataByUserPreference();// await getAllWeatherData();
-    // const allUserData = await getWeatherDataByUserPreference();
-    // console.log(allUserData);
-    // console.log(allWeatherData);
+    const allWeatherData = await getWeatherDataByUserPreference();
     allWeatherData[0].map(async (entry) => {
       const result = await weatherAPI([entry.location]);
       if (result === error.WEATHER_API_ERROR) throw Error(error.WEATHER_API_ERROR);

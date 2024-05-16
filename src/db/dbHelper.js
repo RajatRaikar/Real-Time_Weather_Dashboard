@@ -1,6 +1,8 @@
-const connection = require("./database");
+const { connectWithRetry } = require("./database");
+
 
 const insertUserPreference = async (userNativeId, locId) => {
+  const connection = await connectWithRetry();
   return await new Promise((resolve, reject) => {
     connection.query("CALL InsertUserPreference(?,?)", [userNativeId, locId], (error, results) => {
       if (error) reject(error);
@@ -10,6 +12,7 @@ const insertUserPreference = async (userNativeId, locId) => {
 };
 
 const updateUserPreference = async (userId, locId) => {
+  const connection = await connectWithRetry();
   return await new Promise((resolve, reject) => {
     connection.query("CALL UpdateUserPreference(?, ?)", [userId, locId], (error, results) => {
       if (error) reject(error);
@@ -19,6 +22,7 @@ const updateUserPreference = async (userId, locId) => {
 };
 
 const insertWeatherData = async (location, temperature, humidity, timestamp) => {
+  const connection = await connectWithRetry();
   return await new Promise((resolve, reject) => {
     connection.query("CALL InsertWeatherData(?,?,?,?)", [location, temperature, humidity, timestamp], (error, results) => {
       if (error) reject(error);
@@ -28,6 +32,7 @@ const insertWeatherData = async (location, temperature, humidity, timestamp) => 
 };
 
 const getDataByLoc = async (location) => {
+  const connection = await connectWithRetry();
   return await new Promise((resolve, reject) => {
     connection.query("CALL GetWeatherDataByLocation(?)", [location], (error, results) => {
       if (error) reject(error);
@@ -37,6 +42,7 @@ const getDataByLoc = async (location) => {
 };
 
 const getUserPreferenceById = async (id) => {
+  const connection = await connectWithRetry();
   return await new Promise((resolve, reject) => {
     connection.query("CALL GetUserPreference(?)", [id], (error, results) => {
       if (error) reject(error);
@@ -46,6 +52,7 @@ const getUserPreferenceById = async (id) => {
 };
 
 const getUserPreferenceByLocationById = async (userNativeId) => {
+  const connection = await connectWithRetry();
   return await new Promise((resolve, reject) => {
     connection.query("CALL GetUserPreferenceByLocId(?)", [userNativeId], (error, results) => {
       if (error) reject(error);
@@ -55,6 +62,7 @@ const getUserPreferenceByLocationById = async (userNativeId) => {
 };
 
 const getAllWeatherData = async () => {
+  const connection = await connectWithRetry();
   return await new Promise((resolve, reject) => {
     connection.query("CALL GetAllWeatherData()", [], (error, results) => {
       if (error) reject(error);
@@ -64,6 +72,7 @@ const getAllWeatherData = async () => {
 };
 
 const updateWeatherData = async (location, temperature, humidity, timestamp) => {
+  const connection = await connectWithRetry();
   return await new Promise((resolve, reject) => {
     connection.query("CALL UpdateWeatherData(?,?,?,?)", [location, temperature, humidity, timestamp], (error, results) => {
       if (error) reject(error);
@@ -73,6 +82,7 @@ const updateWeatherData = async (location, temperature, humidity, timestamp) => 
 };
 
 const getWeatherDataByUserPreference = async () => {
+  const connection = await connectWithRetry();
   return await new Promise((resolve, reject) => {
     connection.query("CALL GetWeatherDataByUserPreference()", (error, results) => {
       if (error) reject(error);
